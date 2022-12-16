@@ -1,0 +1,81 @@
+name: gorundeck-ssh
+description: This plugin provides a node-executor supporting ssh actions through a bastion host.
+rundeckPluginVersion: 1.2
+author: Nicolas GORALSKI
+date: 03/05/2017
+version: 1.0.0
+rundeckCompatibilityVersion: 3.x
+targetHostCompatibility: unix
+license: AGPL-3.0 license
+tags:
+  - script
+  - node executor
+sourceLink: https://github.com/ngoralski/gorundeck-ssh
+providers:
+  - name: gorundeck-ssh.node-executor
+    service: NodeExecutor
+    title: GO-OpenSSH / Bastion host / Node Executor
+    description: 'Execute commands through a bastion host'
+    plugin-type: script
+    script-interpreter: /bin/bash
+    script-file: wrapper.sh
+    config:
+      - name: bastion_host
+        title: Default Bastion Host.
+        type: String
+        required: false
+        description: 'Optional Default Bastion Host. You can overwrite this attribute at node level using ssh-bastion-host'
+        scope: Instance
+        renderingOptions:
+          instance-scope-node-attribute: "ssh-bastion-host"
+      - name: bastion_port
+        title: Default Bastion SSH port.
+        type: Integer
+        required: false
+        description: 'Optional Default Bastion SSH port. You can overwrite this attribute at node level using ssh-bastion-port'
+        scope: Instance
+        renderingOptions:
+          instance-scope-node-attribute: "ssh-bastion-port"
+      - name: bastion_username
+        title: Default Bastion Username.
+        type: String
+        required: false
+        description: 'Optional Default Bastion Username to use to connect as. You can overwrite this attribute at node level using ssh-bastion-username'
+        scope: Instance
+        renderingOptions:
+          instance-scope-node-attribute: "ssh-bastion-username"
+      - name: bastion_ssh_key_storage_path
+        title: Bastion SSH Key
+        type: String
+        required: true
+        description: 'Path to the Bastion host SSH Key to use within Key Storage.'
+        scope: Project
+        renderingOptions:
+          selectionAccessor: "STORAGE_PATH"
+          valueConversion: "STORAGE_PATH_AUTOMATIC_READ"
+          storage-path-root: "keys"
+          storage-file-meta-filter: "Rundeck-key-type=private"
+      - name: ssh_key_storage_path
+        title: Node SSH Key
+        type: String
+        required: false
+        description: "Optional storage path for Node ssh-key file. Declare a node attribute named ssh-key-storage-path."
+        scope: Instance
+        renderingOptions:
+          selectionAccessor: "STORAGE_PATH"
+          valueConversion: "STORAGE_PATH_AUTOMATIC_READ"
+          storage-path-root: "keys"
+          instance-scope-node-attribute: "ssh-key-storage-path"
+          storage-file-meta-filter: "Rundeck-key-type=private"
+      - name: ssh_key_storage_path
+        title: Node SSH Key
+        type: String
+        required: false
+        description: "Optional storage path for Node specific ssh key. Declare a node attribute named ssh-key-storage-path."
+        scope: Instance
+        renderingOptions:
+          selectionAccessor: "STORAGE_PATH"
+          valueConversion: "STORAGE_PATH_AUTOMATIC_READ"
+          storage-path-root: "keys"
+          instance-scope-node-attribute: "ssh-key-storage-path"
+          storage-file-meta-filter: "Rundeck-key-type=private"
