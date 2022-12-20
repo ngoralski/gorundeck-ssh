@@ -22,7 +22,7 @@ jobs:
 
       - name: Get Module depencies
         run: |
-          go install
+          go mod download
 
       - name: Build
         run: |
