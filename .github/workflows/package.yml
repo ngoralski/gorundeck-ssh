@@ -20,6 +20,10 @@ jobs:
         with:
           go-version: ${{matrix.go}}
 
+      - name: Get Module depencies
+        run: |
+          go install
+
       - name: Build
         run: |
           go get -u golang.org/x/lint/golint
