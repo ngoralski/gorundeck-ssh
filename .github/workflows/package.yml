@@ -30,7 +30,7 @@ jobs:
 
       - name: Package the artefact
         run: |
-          pkg_version = echo $GITHUB_REF_NAME | cut -d'v' -f2
+          pkg_version=$(echo $GITHUB_REF_NAME | cut -d'v' -f2)
           cp -rp package_ressources gorundeck-ssh-${pkg_version}-plugin
           cp -rp gorundeck-ssh gorundeck-ssh-${pkg_version}-plugin/contents
           ls -lart .
