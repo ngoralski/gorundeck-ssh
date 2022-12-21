@@ -9,7 +9,7 @@ jobs:
       max-parallel: 4
       matrix:
         go: [
-          "1.17"
+          "1.18"
         ]
     steps:
       - name: Checkout branch
@@ -20,18 +20,13 @@ jobs:
         with:
           go-version: ${{matrix.go}}
 
-      - name: just an ls
+      - name: Get Module dependencies
         run: |
-          ls -lart .
-
-#      - name: Get Module dependencies
-#        run: |
-#          go get .
+          go mod download
 
       - name: Build
         run: |
           go get -u golang.org/x/lint/golint
-          OUT="$(go get -a)"; test -z "$OUT" || (echo "$OUT" && return 1)
           OUT="$(gofmt -l -d ./)"; test -z "$OUT" || (echo "$OUT" && return 1)
           OUT="$(golint ./...)"; test -z "$OUT" || (echo "$OUT" && return 1)
           go build -o gorundeck-ssh cmd/gorundeck-ssh/main.go
