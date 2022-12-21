@@ -39,17 +39,7 @@ jobs:
           cp -rp LICENSE gorundeck-ssh-${pkg_version}-plugin
           ls -lartR gorundeck-ssh-${pkg_version}-plugin/
           zip -r gorundeck-ssh-${pkg_version}-plugin.zip gorundeck-ssh-${pkg_version}-plugin
-          ls -lart .
-          echo "###########"
-          ls -alrt gorundeck-ssh-${pkg_version}-plugin.zip
-          echo "package_name=gorundeck-ssh-${pkg_version}-plugin" >> $GITHUB_ENV
-          echo "package_file=gorundeck-ssh-${pkg_version}-plugin.zip" >> $GITHUB_ENV
-          echo 
 
-      - name: Display info
-        run: |
-          echo "Name : ${{ env.package_name }}"
-          echo "File : ${{ env.package_file }}"
 
       - name: Release
         uses: softprops/action-gh-release@v0.1.13
@@ -58,16 +48,3 @@ jobs:
           files: |
             ${{ env.package_file }}
 
-#      - uses: "marvinpinto/action-automatic-releases@latest"
-#        with:
-#          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-#          prerelease: false
-#          files: |
-#            ${{ env.package_file }}"
-
-
-#      - name: Upload Release Asset
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: "${{ env.package_name }}"
-#          path: "${{ env.package_file }}"
