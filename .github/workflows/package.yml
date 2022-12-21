@@ -20,9 +20,13 @@ jobs:
         with:
           go-version: ${{matrix.go}}
 
-      - name: Get Module dependencies
-        run: |
-          go get .
+      - name: just an ls
+        run: }
+          ls -lart .
+
+#      - name: Get Module dependencies
+#        run: |
+#          go get .
 
       - name: Build
         run: |
