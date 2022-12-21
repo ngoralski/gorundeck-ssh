@@ -4,7 +4,6 @@ go 1.18
 
 require (
 	github.com/helloyi/go-sshclient v1.1.2-0.20220707154810-6ede888765ba
-	github.com/kevinburke/ssh_config v1.2.0
 	golang.org/x/crypto v0.4.0
 )
 

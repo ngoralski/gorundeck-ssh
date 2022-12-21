@@ -20,9 +20,9 @@ jobs:
         with:
           go-version: ${{matrix.go}}
 
-      - name: Get Module depencies
+      - name: Get Module dependencies
         run: |
-          go mod download
+          go get .
 
       - name: Build
         run: |
@@ -30,4 +30,4 @@ jobs:
           OUT="$(go get -a)"; test -z "$OUT" || (echo "$OUT" && return 1)
           OUT="$(gofmt -l -d ./)"; test -z "$OUT" || (echo "$OUT" && return 1)
           OUT="$(golint ./...)"; test -z "$OUT" || (echo "$OUT" && return 1)
-          go build
+          go build -o gorundeck-ssh cmd/gorundeck-ssh/main.go
