@@ -41,10 +41,12 @@ jobs:
           ls -lart .
           echo "###########"
           ls -alrt gorundeck-ssh-${pkg_version}-plugin.zip
+          echo "package_name=gorundeck-ssh-${pkg_version}-plugin" >> $GITHUB_ENV
+          echo "package_file=gorundeck-ssh-${pkg_version}-plugin.zip" >> $GITHUB_ENV
       
 
       - name: Upload Release Asset
         uses: actions/upload-artifact@v3
         with:
-          name: gorundeck-ssh-${pkg_version}-plugin
-          path: gorundeck-ssh-${pkg_version}-plugin.zip
+          name: "${{ env.package_name }}"
+          path: "${{ env.package_file }}"
