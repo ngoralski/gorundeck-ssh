@@ -21,7 +21,7 @@ jobs:
           go-version: ${{matrix.go}}
 
       - name: just an ls
-        run: }
+        run: |
           ls -lart .
 
 #      - name: Get Module dependencies
