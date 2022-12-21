@@ -26,7 +26,4 @@ jobs:
 
       - name: Build
         run: |
-          go get -u golang.org/x/lint/golint
-          OUT="$(gofmt -l -d ./)"; test -z "$OUT" || (echo "$OUT" && return 1)
-          OUT="$(golint ./...)"; test -z "$OUT" || (echo "$OUT" && return 1)
           go build -o gorundeck-ssh cmd/gorundeck-ssh/main.go
