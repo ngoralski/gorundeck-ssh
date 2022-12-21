@@ -36,10 +36,11 @@ jobs:
           pkg_version=$(echo $GITHUB_REF_NAME | cut -d'v' -f2)
           cp -rp package_ressources gorundeck-ssh-${pkg_version}-plugin
           cp -rp gorundeck-ssh gorundeck-ssh-${pkg_version}-plugin/contents
-          ls -lart .
           ls -lartR gorundeck-ssh-${pkg_version}-plugin/
           zip -r gorundeck-ssh-${pkg_version}-plugin.zip gorundeck-ssh-${pkg_version}-plugin
-          
+          ls -lart .
+      
+
       - name: Upload Release Asset
         uses: actions/upload-artifact@v3
         with:
