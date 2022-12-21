@@ -52,11 +52,11 @@ jobs:
           echo "File : ${{ env.package_file }}"
 
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v0.1.13
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            ${{ env.package_file }}"
+            ${{ env.package_file }}
 
 #      - uses: "marvinpinto/action-automatic-releases@latest"
 #        with:
