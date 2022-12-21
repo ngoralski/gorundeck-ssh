@@ -1,5 +1,8 @@
 name: Build the artefact
-on: [push]
+on:
+  push:
+    tags:
+      - 'v*'
 jobs:
   build:
     name: Build ${{matrix.go}}
@@ -34,5 +37,5 @@ jobs:
           cp -rp package_ressources gorundeck-ssh-${pkg_version}-plugin
           cp -rp gorundeck-ssh gorundeck-ssh-${pkg_version}-plugin/contents
           ls -lart .
-          ls -lartR gorundeck-ssh-${pkg_version}-plugin/contents
+          ls -lartR gorundeck-ssh-${pkg_version}-plugin/
           
