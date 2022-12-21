@@ -51,12 +51,15 @@ jobs:
           echo "Name : ${{ env.package_name }}"
           echo "File : ${{ env.package_file }}"
 
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
-          files: |
-            ${{ env.package_file }}"
+      - name: Release
+        uses: softprops/action-gh-release@v1
+
+#      - uses: "marvinpinto/action-automatic-releases@latest"
+#        with:
+#          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+#          prerelease: false
+#          files: |
+#            ${{ env.package_file }}"
 
 
 #      - name: Upload Release Asset
