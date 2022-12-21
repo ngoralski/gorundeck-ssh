@@ -43,7 +43,12 @@ jobs:
           ls -alrt gorundeck-ssh-${pkg_version}-plugin.zip
           echo "package_name=gorundeck-ssh-${pkg_version}-plugin" >> $GITHUB_ENV
           echo "package_file=gorundeck-ssh-${pkg_version}-plugin.zip" >> $GITHUB_ENV
-      
+          echo 
+
+      - name: Display info
+        run: |
+          echo "Name : ${{ env.package_name }}"
+          echo "File : ${{ env.package_file }}"
 
       - name: Upload Release Asset
         uses: actions/upload-artifact@v3
