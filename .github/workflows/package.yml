@@ -36,6 +36,7 @@ jobs:
           pkg_version=$(echo $GITHUB_REF_NAME | cut -d'v' -f2)
           cp -rp package_ressources gorundeck-ssh-${pkg_version}-plugin
           cp -rp gorundeck-ssh gorundeck-ssh-${pkg_version}-plugin/contents
+          cp -rp LICENSE gorundeck-ssh-${pkg_version}-plugin
           ls -lartR gorundeck-ssh-${pkg_version}-plugin/
           zip -r gorundeck-ssh-${pkg_version}-plugin.zip gorundeck-ssh-${pkg_version}-plugin
           ls -lart .
@@ -50,8 +51,16 @@ jobs:
           echo "Name : ${{ env.package_name }}"
           echo "File : ${{ env.package_file }}"
 
-      - name: Upload Release Asset
-        uses: actions/upload-artifact@v3
+      - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          name: "${{ env.package_name }}"
-          path: "${{ env.package_file }}"
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
+            ${{ env.package_file }}"
+
+
+#      - name: Upload Release Asset
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: "${{ env.package_name }}"
+#          path: "${{ env.package_file }}"
