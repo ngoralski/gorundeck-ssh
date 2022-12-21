@@ -39,6 +39,8 @@ jobs:
           ls -lartR gorundeck-ssh-${pkg_version}-plugin/
           zip -r gorundeck-ssh-${pkg_version}-plugin.zip gorundeck-ssh-${pkg_version}-plugin
           ls -lart .
+          echo "###########"
+          ls -alrt gorundeck-ssh-${pkg_version}-plugin.zip
       
 
       - name: Upload Release Asset
