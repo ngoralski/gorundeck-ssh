@@ -2,8 +2,8 @@ name: gorundeck-ssh
 description: This plugin provides a node-executor supporting ssh actions through a bastion host.
 rundeckPluginVersion: 1.2
 author: Nicolas GORALSKI
-date: 03/05/2017
-version: 1.0.0
+date: 2022/12/15
+version: 0.2.0
 rundeckCompatibilityVersion: 3.x
 targetHostCompatibility: unix
 license: AGPL-3.0 license
